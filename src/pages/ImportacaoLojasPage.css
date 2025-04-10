@@ -1,0 +1,360 @@
+.importacao-container {
+    min-height: 100vh;
+    background-color: #f5f5f5;
+  }
+  
+  .importacao-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #1e3a8a;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .importacao-header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+  
+  .btn-voltar {
+    padding: 0.5rem 1rem;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s;
+  }
+  
+  .btn-voltar:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  
+  .importacao-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  .erro-message {
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    background-color: #fee2e2;
+    color: #991b1b;
+    border-radius: 4px;
+    border-left: 4px solid #dc2626;
+  }
+  
+  .importacao-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+  }
+  
+  .importacao-titulo {
+    margin-bottom: 2rem;
+  }
+  
+  .importacao-titulo h2 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    color: #1e3a8a;
+    font-size: 1.5rem;
+  }
+  
+  .importacao-titulo p {
+    color: #4b5563;
+    margin: 0;
+    line-height: 1.5;
+  }
+  
+  .importacao-acoes {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  .btn-download-modelo {
+    padding: 0.75rem 1.5rem;
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background-color 0.3s;
+  }
+  
+  .btn-download-modelo:hover {
+    background-color: #1d4ed8;
+  }
+  
+  .ou-separador {
+    margin: 0 1.5rem;
+    color: #9ca3af;
+    font-weight: 500;
+  }
+  
+  .btn-nova-loja {
+    padding: 0.75rem 1.5rem;
+    background-color: #059669;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background-color 0.3s;
+  }
+  
+  .btn-nova-loja:hover {
+    background-color: #047857;
+  }
+  
+  .importacao-upload {
+    background-color: #f8fafc;
+    border: 2px dashed #cbd5e1;
+    border-radius: 6px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  
+  .upload-area {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .csv-file-input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+  
+  .csv-file-label {
+    background-color: #f3f4f6;
+    color: #4b5563;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s;
+  }
+  
+  .csv-file-label:hover {
+    background-color: #e5e7eb;
+  }
+  
+  .arquivo-selecionado {
+    font-size: 0.875rem;
+    color: #4b5563;
+  }
+  
+  .btn-importar {
+    padding: 0.75rem 1.5rem;
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    min-width: 200px;
+    transition: background-color 0.3s;
+  }
+  
+  .btn-importar:hover {
+    background-color: #1d4ed8;
+  }
+  
+  .btn-importar:disabled {
+    background-color: #93c5fd;
+    cursor: not-allowed;
+  }
+  
+  .validacao-erros {
+    background-color: #fff1f1;
+    border: 1px solid #fecaca;
+    border-radius: 6px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .validacao-erros h3 {
+    color: #991b1b;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.125rem;
+  }
+  
+  .erros-lista {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #fecaca;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    background-color: white;
+  }
+  
+  .erro-item {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #fecaca;
+  }
+  
+  .erro-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+  
+  .erro-item ul {
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+    padding-left: 1.5rem;
+  }
+  
+  .erro-item li {
+    margin-bottom: 0.25rem;
+    color: #991b1b;
+  }
+  
+  .erros-ajuda {
+    margin-top: 1rem;
+    font-style: italic;
+    color: #991b1b;
+  }
+  
+  .importacao-resultado {
+    background-color: #f0fdf4;
+    border: 1px solid #86efac;
+    border-radius: 6px;
+    padding: 1.5rem;
+  }
+  
+  .importacao-resultado h3 {
+    color: #166534;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.125rem;
+  }
+  
+  .resultado-stats {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .resultado-stat {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 6px;
+  }
+  
+  .resultado-stat.sucesso {
+    background-color: #dcfce7;
+    color: #166534;
+  }
+  
+  .resultado-stat.falha {
+    background-color: #fee2e2;
+    color: #991b1b;
+  }
+  
+  .stat-numero {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  
+  .stat-label {
+    font-size: 0.875rem;
+    text-align: center;
+  }
+  
+  .resultado-erros {
+    background-color: #fff1f1;
+    border-radius: 4px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .resultado-erros h4 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    color: #991b1b;
+  }
+  
+  .resultado-erros ul {
+    margin: 0;
+    padding-left: 1.5rem;
+  }
+  
+  .resultado-erros li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .resultado-acoes {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .btn-voltar-dashboard {
+    padding: 0.75rem 1.5rem;
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s;
+  }
+  
+  .btn-voltar-dashboard:hover {
+    background-color: #1d4ed8;
+  }
+  
+  @media (max-width: 768px) {
+    .importacao-acoes {
+      flex-direction: column;
+      gap: 1rem;
+      align-items: stretch;
+    }
+    
+    .ou-separador {
+      margin: 0.5rem 0;
+      text-align: center;
+    }
+    
+    .importacao-content {
+      padding: 1rem;
+    }
+    
+    .resultado-stats {
+      flex-direction: column;
+    }
+  }

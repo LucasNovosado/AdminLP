@@ -1,0 +1,213 @@
+.formulario-container {
+    min-height: 100vh;
+    background-color: #f5f5f5;
+  }
+  
+  .formulario-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #1e3a8a;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .formulario-header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+  
+  .btn-voltar {
+    padding: 0.5rem 1rem;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+  }
+  
+  .btn-voltar:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  
+  .formulario-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  .erro-message {
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    background-color: #fee2e2;
+    color: #991b1b;
+    border-radius: 4px;
+    border-left: 4px solid #dc2626;
+  }
+  
+  .formulario-loja {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+  }
+  
+  .form-section {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .form-section:last-child {
+    border-bottom: none;
+  }
+  
+  .form-section h2 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    color: #333;
+    font-size: 1.25rem;
+  }
+  
+  .form-row {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+  
+  .form-group label {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: #4b5563;
+  }
+  
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 1rem;
+  }
+  
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+  }
+  
+  .form-group input[type="file"] {
+    padding: 0.5rem 0;
+    border: none;
+  }
+  
+  .form-group small {
+    font-size: 0.8rem;
+    color: #6b7280;
+    margin-top: 0.25rem;
+  }
+  
+  .checkbox-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .checkbox-container input[type="checkbox"] {
+    margin-right: 0.5rem;
+  }
+  
+  .checkbox-label {
+    font-weight: normal;
+    margin-bottom: 0;
+  }
+  
+  .imagem-upload {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .imagem-preview {
+    margin-top: 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    overflow: hidden;
+    max-width: 200px;
+  }
+  
+  .imagem-preview img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  
+  .btn-cancelar {
+    padding: 0.75rem 1.5rem;
+    background-color: #f3f4f6;
+    color: #4b5563;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+  }
+  
+  .btn-cancelar:hover {
+    background-color: #e5e7eb;
+  }
+  
+  .btn-salvar {
+    padding: 0.75rem 1.5rem;
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+  }
+  
+  .btn-salvar:hover {
+    background-color: #1d4ed8;
+  }
+  
+  .btn-salvar:disabled {
+    background-color: #93c5fd;
+    cursor: not-allowed;
+  }
+  
+  @media (max-width: 768px) {
+    .form-row {
+      flex-direction: column;
+      gap: 0;
+    }
+    
+    .formulario-content {
+      padding: 1rem;
+    }
+  }
+  
+  .loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-size: 1.2rem;
+    color: #666;
+  }

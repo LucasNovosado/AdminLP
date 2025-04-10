@@ -2,6 +2,9 @@ import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import LoginPage from '../pages/LoginPage';
 import DashboardPage from '../pages/DashboardPage';
+import FormularioLojaPage from '../pages/FormularioLojaPage';
+import PrecosPage from '../pages/PrecosPage';
+import ImportacaoLojasPage from '../pages/ImportacaoLojasPage';
 import authService from '../services/authService';
 
 /**
@@ -56,7 +59,7 @@ const AppRoutes = () => {
         } 
       />
       
-      {/* Rota protegida - Dashboard */}
+      {/* Rotas protegidas */}
       <Route 
         path="/dashboard" 
         element={
@@ -65,9 +68,45 @@ const AppRoutes = () => {
           </ProtectedRoute>
         } 
       />
+
+      <Route 
+        path="/nova-loja" 
+        element={
+          <ProtectedRoute>
+            <FormularioLojaPage />
+          </ProtectedRoute>
+        } 
+      />
+
+      <Route 
+        path="/editar-loja/:id" 
+        element={
+          <ProtectedRoute>
+            <FormularioLojaPage />
+          </ProtectedRoute>
+        } 
+      />
+
+      <Route 
+        path="/precos" 
+        element={
+          <ProtectedRoute>
+            <PrecosPage />
+          </ProtectedRoute>
+        } 
+      />
+
+      <Route 
+        path="/importar-lojas" 
+        element={
+          <ProtectedRoute>
+            <ImportacaoLojasPage />
+          </ProtectedRoute>
+        } 
+      />
       
-      {/* Redirecionamento de rotas não encontradas para a página inicial */}
-      <Route path="*" element={<Navigate to="/" replace />} />
+      {/* Redirecionamento de rotas não encontradas para o dashboard */}
+      <Route path="*" element={<Navigate to="/dashboard" replace />} />
     </Routes>
   );
 };
