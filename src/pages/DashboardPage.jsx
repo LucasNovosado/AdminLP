@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import authService from '../services/authService';
 import { Parse } from '../services/parseService';
 import './DashboardPage.css';
+import MarcasPage from '../pages/MarcasPage';
+
 
 const DashboardPage = () => {
   const [user, setUser] = useState(null);

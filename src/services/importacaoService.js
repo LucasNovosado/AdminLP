@@ -73,6 +73,11 @@ const importacaoService = {
         linhaErros.push('O tipo de popup deve ser: whatsapp, raspadinha ou simples');
       }
       
+      // Verificar se o preço é um número válido
+      if (linha.preco_inicial && (isNaN(linha.preco_inicial) || Number(linha.preco_inicial) < 0)) {
+        linhaErros.push('O preço inicial deve ser um número válido e positivo');
+      }
+      
       // Adicionar erros da linha ao array geral
       if (linhaErros.length > 0) {
         erros.push({
@@ -90,11 +95,12 @@ const importacaoService = {
   },
   
   /**
-   * Realiza a importação massiva de lojas
+   * Realiza a importação massiva de lojas para uma marca específica
    * @param {File} file - Arquivo CSV com dados das lojas
+   * @param {String} marcaId - ID da marca para vincular as lojas
    * @returns {Promise} - Promise com resultados da importação
    */
-  importarCSV: async (file) => {
+  importarCSVParaMarca: async (file, marcaId) => {
     try {
       // Processar o arquivo CSV
       const dadosCSV = await importacaoService.processarCSV(file);
@@ -110,7 +116,7 @@ const importacaoService = {
       }
       
       // Realizar a importação se os dados forem válidos
-      const resultadoImportacao = await lojasService.importarLojas(dadosCSV);
+      const resultadoImportacao = await lojasService.importarLojas(dadosCSV, marcaId);
       
       return {
         sucesso: true,
@@ -123,6 +129,19 @@ const importacaoService = {
         mensagem: `Erro na importação: ${error.message}`
       };
     }
+  },
+
+  /**
+   * Realiza a importação massiva de lojas (método legacy para compatibilidade)
+   * @param {File} file - Arquivo CSV com dados das lojas
+   * @returns {Promise} - Promise com resultados da importação
+   */
+  importarCSV: async (file) => {
+    // Este método agora requer uma marca, então vamos retornar erro
+    return {
+      sucesso: false,
+      mensagem: 'Método deprecado. Use importarCSVParaMarca especificando uma marca.'
+    };
   },
   
   /**
@@ -152,7 +171,7 @@ const importacaoService = {
       'https://wa.me/5543999999999',
       'https://goo.gl/maps/exemplo1',
       'whatsapp',
-      'Baterias em Londrina | Rede Única de Baterias',
+      'Baterias em Londrina | Sua Marca',
       'Encontre as melhores baterias em Londrina. Preços a partir de R$ 289,00.'
     ];
     
@@ -165,15 +184,29 @@ const importacaoService = {
       'https://wa.me/5544999999999',
       'https://goo.gl/maps/exemplo2',
       'raspadinha',
-      'Baterias em Maringá | Rede Única de Baterias',
+      'Baterias em Maringá | Sua Marca',
       'Baterias automotivas com os melhores preços em Maringá.'
+    ];
+
+    const exemploLinha3 = [
+      'sao-paulo-centro',
+      'São Paulo',
+      'SP',
+      '(11) 1111-1111',
+      '319',
+      'https://wa.me/5511999999999',
+      'https://goo.gl/maps/exemplo3',
+      'simples',
+      'Baterias em São Paulo | Sua Marca',
+      'Baterias automotivas no centro de São Paulo com entrega rápida.'
     ];
     
     // Criar conteúdo CSV
     const csvContent = [
       cabecalho,
       exemploLinha1,
-      exemploLinha2
+      exemploLinha2,
+      exemploLinha3
     ].map(e => e.join(',')).join('\n');
     
     // Criar blob para download

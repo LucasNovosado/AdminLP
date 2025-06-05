@@ -1,26 +1,53 @@
-// src/pages/ImportacaoLojasPage.jsx
-
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import importacaoService from '../services/importacaoService';
+import marcasService from '../services/marcasService';
 import authService from '../services/authService';
 import './ImportacaoLojasPage.css';
 
 const ImportacaoLojasPage = () => {
+  const { marcaId } = useParams();
   const navigate = useNavigate();
+  const [marca, setMarca] = useState(null);
   const [file, setFile] = useState(null);
   const [processando, setProcessando] = useState(false);
   const [erro, setErro] = useState('');
   const [resultado, setResultado] = useState(null);
   const [validacaoErros, setValidacaoErros] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  // Verifica autenticação
-  React.useEffect(() => {
-    const currentUser = authService.getCurrentUser();
-    if (!currentUser) {
-      navigate('/');
-    }
-  }, [navigate]);
+  useEffect(() => {
+    const verificarAutenticacao = () => {
+      const currentUser = authService.getCurrentUser();
+      if (!currentUser) {
+        navigate('/');
+        return false;
+      }
+      return true;
+    };
+
+    const carregarMarca = async () => {
+      if (!verificarAutenticacao()) return;
+
+      setLoading(true);
+      try {
+        const marcaData = await marcasService.getMarcaById(marcaId);
+        setMarca(marcaData);
+      } catch (error) {
+        console.error('Erro ao carregar marca:', error);
+        if (error.code === 101) {
+          setErro('Marca não encontrada.');
+          navigate('/marcas');
+        } else {
+          setErro('Erro ao carregar os dados da marca.');
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    carregarMarca();
+  }, [marcaId, navigate]);
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -50,7 +77,7 @@ const ImportacaoLojasPage = () => {
     setValidacaoErros(null);
 
     try {
-      const resultado = await importacaoService.importarCSV(file);
+      const resultado = await importacaoService.importarCSVParaMarca(file, marcaId);
       
       if (!resultado.sucesso) {
         setErro(resultado.mensagem);
@@ -73,7 +100,7 @@ const ImportacaoLojasPage = () => {
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'modelo_importacao_lojas.csv';
+    a.download = `modelo_importacao_lojas_${marca?.get('slug') || 'marca'}.csv`;
     document.body.appendChild(a);
     a.click();
     window.URL.revokeObjectURL(url);
@@ -81,17 +108,25 @@ const ImportacaoLojasPage = () => {
   };
 
   const voltar = () => {
-    navigate('/dashboard');
+    navigate(`/marca/${marcaId}/lojas`);
   };
 
   const adicionarNovaLoja = () => {
-    navigate('/nova-loja');
+    navigate(`/marca/${marcaId}/nova-loja`);
   };
+
+  if (loading) {
+    return <div className="loading">Carregando dados da marca...</div>;
+  }
+
+  if (!marca) {
+    return <div className="loading">Marca não encontrada.</div>;
+  }
 
   return (
     <div className="importacao-container">
       <header className="importacao-header">
-        <h1>Importação de Lojas</h1>
+        <h1>Importação de Lojas - {marca.get('nome')}</h1>
         <button className="btn-voltar" onClick={voltar}>Voltar</button>
       </header>
 
@@ -102,7 +137,7 @@ const ImportacaoLojasPage = () => {
           <div className="importacao-titulo">
             <h2>Importação Massiva de Lojas</h2>
             <p>
-              Importe múltiplas lojas de uma vez através de um arquivo CSV.
+              Importe múltiplas lojas de uma vez para a marca <strong>{marca.get('nome')}</strong> através de um arquivo CSV.
               Faça o download do modelo e preencha com seus dados.
             </p>
           </div>
@@ -206,7 +241,7 @@ const ImportacaoLojasPage = () => {
                   onClick={voltar} 
                   className="btn-voltar-dashboard"
                 >
-                  Voltar ao Dashboard
+                  Voltar às Lojas
                 </button>
               </div>
             </div>
