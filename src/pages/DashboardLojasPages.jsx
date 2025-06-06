@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import authService from '../services/authService';
 import marcasService from '../services/marcasService';
 import lojasService from '../services/lojasService';
-import './DashboardLojasPage.css';
+import './DashboardLojasPages.css';
 
 const DashboardLojasPage = () => {
   const { marcaId } = useParams();

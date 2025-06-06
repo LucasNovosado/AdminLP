@@ -4,7 +4,6 @@ import LoginPage from '../pages/LoginPage';
 import MarcasPage from '../pages/MarcasPage';
 import FormularioMarcaPage from '../pages/FormularioMarcaPage';
 import DashboardLojasPage from '../pages/DashboardLojasPages';
-import DashboardLojasPage from '../pages/DashboardLojasPages';
 import FormularioLojaPage from '../pages/FormularioLojaPage';
 import PrecosMarcaPage from '../pages/PrecosMarcaPage';
 import ImportacaoLojasPage from '../pages/ImportacaoLojasPage';

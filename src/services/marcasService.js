@@ -1,4 +1,4 @@
-import { Parse } from './parseService';
+import Parse from 'parse/dist/parse.min.js';
 
 /**
  * Serviço para gerenciar marcas no Parse Server
@@ -81,7 +81,7 @@ const marcasService = {
           marcaData.logoFile
         );
         await logoParseFile.save();
-        marca.set('logoFile', logoParseFile);
+        marca.set('logo', logoParseFile);
       }
 
       return await marca.save();

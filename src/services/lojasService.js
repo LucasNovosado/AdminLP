@@ -1,4 +1,4 @@
-import { Parse } from './parseService';
+import Parse from 'parse/dist/parse.min.js';
 
 /**
  * Serviço para gerenciar as lojas no Parse Server
