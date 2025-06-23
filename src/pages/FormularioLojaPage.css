@@ -1,12 +1,12 @@
-/* FormularioMarcaPage.css */
+/* FormularioLojaPage.css */
 
-.formulario-marca-container {
+.formulario-container {
   min-height: 100vh;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   position: relative;
 }
 
-.formulario-marca-container::before {
+.formulario-container::before {
   content: '';
   position: absolute;
   top: 0;
@@ -17,25 +17,20 @@
   backdrop-filter: blur(10px);
 }
 
-.formulario-marca-header {
+.formulario-header {
   position: relative;
   z-index: 10;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-}
-
-.formulario-marca-header-content {
-  max-width: 1400px;
-  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem 2rem;
 }
 
-.formulario-marca-header h1 {
+.formulario-header h1 {
   margin: 0;
   font-size: 1.75rem;
   font-weight: 700;
@@ -66,7 +61,7 @@
   box-shadow: 0 8px 25px rgba(107, 114, 128, 0.4);
 }
 
-.formulario-marca-content {
+.formulario-content {
   position: relative;
   z-index: 10;
   max-width: 1000px;
@@ -85,7 +80,7 @@
   font-weight: 500;
 }
 
-.formulario-marca-card {
+.formulario-loja {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20px);
   border-radius: 24px;
@@ -103,22 +98,11 @@
   border-bottom: none;
 }
 
-.form-section-header {
-  margin-bottom: 2rem;
-}
-
-.form-section-header h2 {
+.form-section h2 {
   font-size: 1.5rem;
   font-weight: 700;
   color: #1f2937;
-  margin: 0 0 0.5rem 0;
-}
-
-.form-section-description {
-  color: #6b7280;
-  font-size: 0.95rem;
-  line-height: 1.6;
-  margin: 0;
+  margin: 0 0 2rem 0;
 }
 
 .form-row {
@@ -137,12 +121,6 @@
   flex-direction: column;
 }
 
-.form-group.required label::after {
-  content: ' *';
-  color: #ef4444;
-  font-weight: 600;
-}
-
 .form-group label {
   font-weight: 600;
   margin-bottom: 0.75rem;
@@ -150,7 +128,9 @@
   font-size: 0.95rem;
 }
 
-.form-input {
+.form-group input,
+.form-group select,
+.form-group textarea {
   padding: 1rem 1.25rem;
   border: 2px solid #e5e7eb;
   border-radius: 12px;
@@ -160,19 +140,21 @@
   background: white;
 }
 
-.form-input:focus {
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
   outline: none;
   border-color: #3b82f6;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
-.form-input:disabled {
+.form-group input:disabled {
   background: #f9fafb;
   color: #6b7280;
   cursor: not-allowed;
 }
 
-.form-textarea {
+.form-group textarea {
   min-height: 100px;
   resize: vertical;
 }
@@ -182,17 +164,6 @@
   color: #6b7280;
   margin-top: 0.5rem;
   line-height: 1.4;
-}
-
-.slug-preview {
-  margin-top: 0.5rem;
-  padding: 0.5rem 0.75rem;
-  background: #f0fdf4;
-  border: 1px solid #86efac;
-  border-radius: 8px;
-  font-family: 'Courier New', monospace;
-  font-size: 0.85rem;
-  color: #166534;
 }
 
 .checkbox-container {
@@ -219,58 +190,28 @@
   margin: 0;
 }
 
-/* Logo Upload Section */
-.logo-upload-section {
+/* Seção de upload de imagens */
+.imagem-upload {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 1.5rem;
-  padding: 2rem;
+}
+
+.imagem-upload input[type="file"] {
+  padding: 0.75rem;
   border: 2px dashed #d1d5db;
-  border-radius: 16px;
+  border-radius: 12px;
   background: #f9fafb;
   transition: all 0.3s ease;
-}
-
-.logo-upload-section.has-file {
-  border-color: #10b981;
-  background: #f0fdf4;
-}
-
-.logo-file-input {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
-}
-
-.logo-file-label {
-  padding: 1rem 2rem;
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-  color: white;
-  border: none;
-  border-radius: 12px;
   cursor: pointer;
-  font-weight: 600;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
 }
 
-.logo-file-label:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+.imagem-upload input[type="file"]:hover {
+  border-color: #3b82f6;
+  background: #f0f9ff;
 }
 
-.logo-preview {
+.imagem-preview {
+  margin-top: 1rem;
   max-width: 200px;
   border-radius: 16px;
   overflow: hidden;
@@ -278,89 +219,13 @@
   border: 3px solid white;
 }
 
-.logo-preview img {
+.imagem-preview img {
   width: 100%;
   height: auto;
   display: block;
 }
 
-/* Valores Grid */
-.valores-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-}
-
-.valor-card {
-  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-  border: 2px solid #e2e8f0;
-  border-radius: 20px;
-  padding: 2rem;
-  transition: all 0.3s ease;
-  text-align: center;
-}
-
-.valor-card:hover {
-  border-color: #3b82f6;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.1);
-}
-
-.valor-card h3 {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #1f2937;
-  margin: 0 0 1.5rem 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-}
-
-.currency-input-container {
-  display: flex;
-  align-items: center;
-  border: 2px solid #e5e7eb;
-  border-radius: 12px;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  background: white;
-}
-
-.currency-input-container:focus-within {
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-}
-
-.currency-prefix {
-  background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
-  color: #4b5563;
-  padding: 1rem 1.25rem;
-  font-weight: 700;
-  font-size: 1.1rem;
-  border-right: 1px solid #e5e7eb;
-}
-
-.currency-input {
-  flex: 1;
-  padding: 1rem 1.25rem;
-  border: none;
-  font-size: 1.1rem;
-  font-weight: 600;
-  background: transparent;
-  color: #1f2937;
-  text-align: center;
-}
-
-.currency-input:focus {
-  outline: none;
-}
-
-.currency-input::placeholder {
-  color: #9ca3af;
-}
-
-/* Form Actions */
+/* Ações do formulário */
 .form-actions {
   background: #f8fafc;
   padding: 2rem;
@@ -411,48 +276,26 @@
   box-shadow: 0 4px 15px rgba(16, 185, 129, 0.2);
 }
 
-/* Loading States */
-.loading-container {
+/* Loading */
+.loading {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 60vh;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px);
-  border-radius: 24px;
-  margin: 2rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-}
-
-.loading-content {
-  text-align: center;
+  min-height: 100vh;
+  font-size: 1.2rem;
   color: #6b7280;
-}
-
-.loading-spinner {
-  width: 50px;
-  height: 50px;
-  border: 4px solid #e5e7eb;
-  border-top: 4px solid #3b82f6;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-  margin: 0 auto 1rem;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
 /* Responsividade */
 @media (max-width: 768px) {
-  .formulario-marca-header-content {
+  .formulario-header {
     flex-direction: column;
     gap: 1rem;
     text-align: center;
   }
 
-  .formulario-marca-content {
+  .formulario-content {
     padding: 1rem;
   }
 
@@ -465,15 +308,6 @@
     gap: 0;
   }
 
-  .valores-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .valor-card {
-    padding: 1.5rem;
-  }
-
   .form-actions {
     flex-direction: column;
     padding: 1.5rem;
@@ -484,47 +318,24 @@
     width: 100%;
     justify-content: center;
   }
-
-  .currency-input-container {
-    flex-direction: column;
-  }
-
-  .currency-prefix {
-    width: 100%;
-    text-align: center;
-    border-right: none;
-    border-bottom: 1px solid #e5e7eb;
-  }
-
-  .currency-input {
-    text-align: center;
-  }
 }
 
 @media (max-width: 480px) {
-  .formulario-marca-header h1 {
+  .formulario-header h1 {
     font-size: 1.5rem;
   }
 
-  .form-section-header h2 {
+  .form-section h2 {
     font-size: 1.25rem;
   }
 
-  .valor-card h3 {
-    font-size: 1.1rem;
-  }
-
-  .logo-upload-section {
-    padding: 1.5rem;
-  }
-
-  .logo-preview {
+  .imagem-preview {
     max-width: 150px;
   }
 }
 
 /* Animações */
-.formulario-marca-card {
+.formulario-loja {
   animation: slideInUp 0.6s ease;
 }
 

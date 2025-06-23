@@ -15,7 +15,12 @@ const lojasService = {
       const Loja = Parse.Object.extend("Lojas");
       const query = new Parse.Query(Loja);
       
-      query.equalTo("marca_id", marcaId);
+      // Criar objeto Parse da marca para comparação com pointer
+      const Marca = Parse.Object.extend("Marcas");
+      const marca = new Marca();
+      marca.id = marcaId;
+      
+      query.equalTo("marca_id", marca);
       
       // Aplicar filtro se necessário
       if (estado) {
@@ -91,7 +96,12 @@ const lojasService = {
       loja.set('estado', lojaData.estado);
       loja.set('telefone', lojaData.telefone);
       loja.set('preco_inicial', Number(lojaData.preco_inicial));
-      loja.set('marca_id', lojaData.marca_id); // Novo campo obrigatório
+      
+      // Criar objeto Parse da marca para o pointer
+      const Marca = Parse.Object.extend("Marcas");
+      const marca = new Marca();
+      marca.id = lojaData.marca_id;
+      loja.set('marca_id', marca);
       
       // Campos opcionais
       loja.set('link_whatsapp', lojaData.link_whatsapp || '');
@@ -153,13 +163,18 @@ const lojasService = {
       erros: []
     };
 
+    // Criar objeto Parse da marca uma vez
+    const Marca = Parse.Object.extend("Marcas");
+    const marca = new Marca();
+    marca.id = marcaId;
+
     for (const lojaData of lojas) {
       try {
         // Verificar se já existe uma loja com o mesmo slug na mesma marca
         const Loja = Parse.Object.extend("Lojas");
         const query = new Parse.Query(Loja);
         query.equalTo("slug", lojaData.slug.toLowerCase());
-        query.equalTo("marca_id", marcaId);
+        query.equalTo("marca_id", marca);
         const lojaExistente = await query.first();
 
         if (lojaExistente) {
@@ -180,7 +195,7 @@ const lojasService = {
         novaLoja.set('estado', lojaData.estado);
         novaLoja.set('telefone', lojaData.telefone);
         novaLoja.set('preco_inicial', Number(lojaData.preco_inicial) || 0);
-        novaLoja.set('marca_id', marcaId);
+        novaLoja.set('marca_id', marca);
         
         // Campos opcionais
         if (lojaData.link_whatsapp) novaLoja.set('link_whatsapp', lojaData.link_whatsapp);
@@ -217,7 +232,12 @@ const lojasService = {
       const Loja = Parse.Object.extend("Lojas");
       const query = new Parse.Query(Loja);
       query.equalTo("slug", slug.toLowerCase());
-      query.equalTo("marca_id", marcaId);
+      
+      // Criar objeto Parse da marca para comparação com pointer
+      const Marca = Parse.Object.extend("Marcas");
+      const marca = new Marca();
+      marca.id = marcaId;
+      query.equalTo("marca_id", marca);
       
       if (excluirId) {
         query.notEqualTo("objectId", excluirId);
@@ -258,13 +278,20 @@ const lojasService = {
     try {
       let lojasAtualizadas = 0;
       
+      // Criar objeto Parse da marca para comparação
+      const Marca = Parse.Object.extend("Marcas");
+      const marca = new Marca();
+      marca.id = marcaId;
+      
       for (const lojaId of lojasIds) {
         const Loja = Parse.Object.extend("Lojas");
         const query = new Parse.Query(Loja);
         const loja = await query.get(lojaId);
         
         // Verificar se a loja pertence à marca
-        if (loja.get('marca_id') !== marcaId) {
+        // Para comparar pointers, precisamos comparar os IDs
+        const lojaMarcaId = loja.get('marca_id')?.id;
+        if (lojaMarcaId !== marcaId) {
           continue;
         }
         
